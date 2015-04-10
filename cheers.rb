@@ -1,16 +1,33 @@
+require 'date'
+
 def ask_for_name
-  puts "Hello, what's your name?"
-  name = gets.chomp.upcase
+  name = ""
+  while name.empty?
+    puts "Hello, what's your name?"
+    name = gets.chomp.upcase
+  end
+  name
 end
 
-name = ""
-while name.empty?
-  name = ask_for_name
-end
-name.gsub!(/[^\w], "")
+name = ask_for_name
+name.gsub!(/[^\w]/, "")
 an_letters = "AEFHILMNORSX"
 name.each_char do |letter|
   article = an_letters.include?(letter) ? "an" : "a"
   puts "Give me #{article}... #{letter}!"
 end
 puts "#{name}'s just GRAND!"
+
+#Birthday Tracker!
+
+puts "Whatup #{name}? What's your Birthday(m-d-y)?"
+birthday = Date.strptime(gets.chomp, '%m-%d-%Y').yday
+now = DateTime.now.yday
+dif = birthday - now
+if dif < 0 && dif > -180
+  puts "Great! Your Birthday was #{dif*-1} days ago!"
+elsif dif < -180
+  puts "Great! Your Birthday is #{365 - (dif*-1)} days from now!"
+else
+  puts "Your Birthday is in #{dif} days! Happy Birthday!"
+end
