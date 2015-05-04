@@ -23,11 +23,11 @@ puts "#{name}'s just GRAND!"
 puts "Whatup #{name}? What's your Birthday(m-d-y)?"
 birthday = Date.strptime(gets.chomp, '%m-%d-%Y').yday
 now = DateTime.now.yday
-dif = birthday - now
+dif = birthday - now - 1
 if dif < 0 && dif > -180
-  puts "Great! Your Birthday was #{dif*-1} days ago!"
+  puts "Great! Your Birthday was #{dif} days ago!"
 elsif dif < -180
-  puts "Great! Your Birthday is #{365 - (dif*-1)} days from now!"
+  puts "Great! Your Birthday is #{365 - dif} days from now!"
 else
   puts "Your Birthday is in #{dif} days! Happy Birthday!"
 end
